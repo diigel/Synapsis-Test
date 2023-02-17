@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SynapsisTest</string>
+    <string name="str_sign_to_continue">Please Sign in to Continue</string>
+    <string name="str_sign">Sign</string>
+    <string name="str_username">Username</string>
+    <string name="str_password">Password</string>
+    <string name="str_error_login">Username atau Password tidak di temukan</string>
+
+    <string name="signup">Dont have account? <font color='#1976D2'><u>Signup</u></font></string>
+</resources>
