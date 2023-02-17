@@ -104,32 +104,15 @@
             tools:ignore="Autofill" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/str_sign"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtInputLayoutPassword" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/str_sign"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtInputLayoutPassword" />
-
-    <Button
+    <com.google.android.material.button.MaterialButton
+        style="@style/MainButton"
         android:id="@+id/btnSign"
-        style="@style/ThemeOverlay.Material3.Button.TextButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="@string/str_sign"
+        android:enabled="false"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtInputLayoutPassword" />
@@ -139,10 +122,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/signup"
-        app:layout_constraintEnd_toEndOf="@+id/button"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        android:text="@string/str_dont_have_account"
+        app:layout_constraintEnd_toEndOf="@+id/btnSign"
+        app:layout_constraintStart_toStartOf="@+id/btnSign"
+        app:layout_constraintTop_toBottomOf="@+id/btnSign" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

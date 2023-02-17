@@ -11,8 +11,8 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class SignInUseCase(private val userRepository: AuthRepository, dispatcher: CoroutineDispatcher) : BaseUseCase<AuthRequest, UserUiModel>(dispatcher) {
-    override suspend fun execute(param: AuthRequest): Flow<ResultState<UserUiModel>> {
+class SignInUseCase(private val userRepository: AuthRepository, dispatcher: CoroutineDispatcher) : BaseUseCase<AuthRequest, Boolean>(dispatcher) {
+    override suspend fun execute(param: AuthRequest): Flow<ResultState<Boolean>> {
         return userRepository.userLocalLogin(param).map { state ->
             fetchState {
                 when (state){
@@ -20,7 +20,7 @@ class SignInUseCase(private val userRepository: AuthRepository, dispatcher: Coro
                         ResultState.Loading()
                     }
                     is ResultState.Success -> {
-                        ResultState.Success(state.data.mapToUserUiModel())
+                        ResultState.Success(state.data)
                     }
 
                     is ResultState.Failed -> {

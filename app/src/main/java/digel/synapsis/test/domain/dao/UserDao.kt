@@ -13,6 +13,6 @@ interface UserDao {
     suspend fun insertUser(entity: UserEntity)
 
     @Query("select * from user where password = :password")
-    suspend fun getUserByPassword(password: String) : UserEntity
+    suspend fun getUserByPassword(password: String) : UserEntity?
 
 }

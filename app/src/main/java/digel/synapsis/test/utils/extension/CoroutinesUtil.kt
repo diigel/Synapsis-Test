@@ -1,8 +1,10 @@
 package digel.synapsis.test.utils.extension
 
 import digel.synapsis.test.utils.state.ResultState
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import java.net.ConnectException
 
 suspend fun <T: Any> fetchState(call: suspend () -> ResultState<T>): ResultState<T> {
@@ -26,4 +28,4 @@ suspend fun <T: Any> fetch( call: suspend () -> T): Flow<ResultState<T>> = flow 
         throwable.printStackTrace()
         emit(ResultState.Failed(throwable))
     }
-}
+}.flowOn(Dispatchers.IO)

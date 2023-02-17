@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">SynapsisTest</string>
     <string name="str_sign_to_continue">Please Sign in to Continue</string>
-    <string name="str_sign">Sign</string>
+    <string name="str_sign">SignIn</string>
     <string name="str_username">Username</string>
     <string name="str_password">Password</string>
     <string name="str_error_login">Username atau Password tidak di temukan</string>
 
-    <string name="signup">Dont have account? <font color='#1976D2'><u>Signup</u></font></string>
+    <string name="str_dont_have_account">Dont have account? <font color='#1976D2'><u>Signup</u></font></string>
+    <string name="str_already_have_account">Already have account? <font color='#1976D2'><u>Signin</u></font></string>
+    <string name="str_signup">SignUp</string>
 </resources>

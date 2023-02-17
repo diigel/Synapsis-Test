@@ -6,7 +6,7 @@ import digel.synapsis.test.domain.dao.UserDao
 import digel.synapsis.test.data.local.database.UserDatabase
 import digel.synapsis.test.data.local.repository.AuthRepository
 import digel.synapsis.test.data.local.repository.AuthRepositoryImp
-import digel.synapsis.test.ui.viewmodel.SigninViewModel
+import digel.synapsis.test.ui.viewmodel.SignInViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -28,15 +28,11 @@ object DataModule {
 
         single {
             provideDatabase(androidApplication())
-            provideUserDao(get())
         }
+        single {   provideUserDao(get()) }
     }
 
     val authRepository = module {
         single<AuthRepository>{ AuthRepositoryImp(get()) }
-    }
-
-    val signinViewModel = module {
-        viewModel { SigninViewModel(get()) }
     }
 }

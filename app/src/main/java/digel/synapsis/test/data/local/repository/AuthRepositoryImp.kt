@@ -5,21 +5,23 @@ import digel.synapsis.test.data.local.entity.request.AuthRequest
 import digel.synapsis.test.domain.dao.UserDao
 import digel.synapsis.test.utils.extension.fetch
 import digel.synapsis.test.utils.state.ResultState
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.withContext
 
 class AuthRepositoryImp (private val userDao: UserDao) : AuthRepository {
-    override suspend fun userLocalLogin(authRequest: AuthRequest): Flow<ResultState<UserEntity>> {
+    override suspend fun userLocalLogin(authRequest: AuthRequest): Flow<ResultState<Boolean>> {
         return fetch {
-            userDao.getUserByPassword(authRequest.password.orEmpty())
+            val data = userDao.getUserByPassword(authRequest.password.orEmpty())
+           return@fetch data != null
         }
     }
 
-    override suspend fun userLocalRegister(userEntity: UserEntity): Flow<Boolean> {
-        return flow {
+    override suspend fun userLocalRegister(userEntity: UserEntity): Flow<ResultState<Boolean>> {
+        return fetch {
             userDao.insertUser(userEntity)
-            emit(true)
-        }.catch { emit(false) }
+            val checkIsInsert = userDao.getUserByPassword(userEntity.password)
+            return@fetch checkIsInsert != null
+        }
     }
 }

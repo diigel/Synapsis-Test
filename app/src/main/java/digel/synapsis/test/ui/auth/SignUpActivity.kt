@@ -1,43 +1,42 @@
 package digel.synapsis.test.ui.auth
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import digel.synapsis.test.data.local.entity.request.AuthRequest
-import digel.synapsis.test.databinding.ActivitySigninBinding
-import digel.synapsis.test.ui.MainActivity
-import digel.synapsis.test.ui.viewmodel.SignInViewModel
+import digel.synapsis.test.databinding.ActivitySignupBinding
+import digel.synapsis.test.ui.viewmodel.SignUpViewModel
 import digel.synapsis.test.utils.extension.hideKeyboard
 import digel.synapsis.test.utils.extension.showSnackBar
 import digel.synapsis.test.utils.extension.textChanges
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
-class SignInActivity : AppCompatActivity() {
+class SignUpActivity : AppCompatActivity() {
 
-    private lateinit var viewBinding: ActivitySigninBinding
-    private val viewModel: SignInViewModel by viewModels()
+    private lateinit var viewBinding : ActivitySignupBinding
+    private val viewModel : SignUpViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewBinding = ActivitySigninBinding.inflate(layoutInflater)
+        viewBinding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
         viewBinding.run {
+
             etUsername.textChanges()
                 .onEach{
-                isEnableButton()
-            }.launchIn(lifecycleScope)
+                    isEnableButton()
+                }.launchIn(lifecycleScope)
 
             etPassword.textChanges()
                 .onEach{
-                isEnableButton()
-            }.launchIn(lifecycleScope)
+                    isEnableButton()
+                }.launchIn(lifecycleScope)
 
-            btnSign.setOnClickListener {
+            btnSignUp.setOnClickListener {
                 hideKeyboard()
-                viewModel.requestLogin(
+                viewModel.requestSignUp(
                     AuthRequest(
                         username = etUsername.text.toString(),
                         password = etPassword.text.toString()
@@ -46,22 +45,21 @@ class SignInActivity : AppCompatActivity() {
             }
 
             txtSignup.setOnClickListener {
-                startActivity(Intent(this@SignInActivity,SignUpActivity::class.java))
+                finish()
             }
 
-            viewModel.loginEvent.observe(this@SignInActivity){ result ->
+            viewModel.signUpEvent.observe(this@SignUpActivity){ result ->
                 if (result){
-                    startActivity(Intent(this@SignInActivity,MainActivity::class.java))
+                    viewBinding.root.showSnackBar("Success, SignUp Account")
+                    finish()
                 }else {
-                    viewBinding.root.showSnackBar("User Not Found")
+                    viewBinding.root.showSnackBar("Failed")
                 }
             }
-
         }
     }
 
     private fun isEnableButton() = viewBinding.run {
-        btnSign.isEnabled = etUsername.text.toString().isNotEmpty() && etPassword.text.toString().isNotEmpty()
+        btnSignUp.isEnabled = etUsername.text.toString().isNotEmpty() && etPassword.text.toString().isNotEmpty()
     }
-
 }

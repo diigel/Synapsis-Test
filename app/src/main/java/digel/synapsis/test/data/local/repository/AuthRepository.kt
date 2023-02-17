@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface AuthRepository {
 
-    suspend fun userLocalLogin(authRequest: AuthRequest) : Flow<ResultState<UserEntity>>
+    suspend fun userLocalLogin(authRequest: AuthRequest) : Flow<ResultState<Boolean>>
 
-    suspend fun userLocalRegister(userEntity: UserEntity) : Flow<Boolean>
+    suspend fun userLocalRegister(userEntity: UserEntity) : Flow<ResultState<Boolean>>
 }

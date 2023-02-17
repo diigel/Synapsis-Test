@@ -1,12 +1,23 @@
 package digel.synapsis.test.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import digel.synapsis.test.R
+import androidx.appcompat.app.AppCompatActivity
+import digel.synapsis.test.databinding.ActivityMainBinding
+import java.util.Calendar
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var viewBinding : ActivityMainBinding
+    private val calendar by lazy { Calendar.getInstance() }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        viewBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
+
+        viewBinding.run {
+            txtTimeNow.text = calendar.time.toString()
+            txtDateNow.text = calendar.get(Calendar.DATE).toString()
+        }
     }
+
 }
