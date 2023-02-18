@@ -3,9 +3,7 @@ package digel.synapsis.test.domain.usecase
 import digel.synapsis.test.base.BaseUseCase
 import digel.synapsis.test.data.local.entity.request.AuthRequest
 import digel.synapsis.test.data.local.repository.AuthRepository
-import digel.synapsis.test.domain.uimodel.UserUiModel
 import digel.synapsis.test.utils.extension.fetchState
-import digel.synapsis.test.utils.mapper.UserMapper.mapToUserUiModel
 import digel.synapsis.test.utils.state.ResultState
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow

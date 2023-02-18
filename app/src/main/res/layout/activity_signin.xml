@@ -98,7 +98,7 @@
             android:drawablePadding="8dp"
             android:padding="8dp"
             android:hint="@string/str_password"
-            android:imeOptions="actionNext"
+            android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:maxLength="30"
             tools:ignore="Autofill" />

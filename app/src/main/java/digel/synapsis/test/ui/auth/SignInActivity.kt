@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import digel.synapsis.test.data.local.entity.request.AuthRequest
 import digel.synapsis.test.databinding.ActivitySigninBinding
-import digel.synapsis.test.ui.MainActivity
+import digel.synapsis.test.ui.feature.PageAActivity
 import digel.synapsis.test.ui.viewmodel.SignInViewModel
 import digel.synapsis.test.utils.extension.hideKeyboard
 import digel.synapsis.test.utils.extension.showSnackBar
@@ -51,7 +51,9 @@ class SignInActivity : AppCompatActivity() {
 
             viewModel.loginEvent.observe(this@SignInActivity){ result ->
                 if (result){
-                    startActivity(Intent(this@SignInActivity,MainActivity::class.java))
+                    hideKeyboard()
+                    startActivity(Intent(this@SignInActivity, PageAActivity::class.java))
+                    finishAffinity()
                 }else {
                     viewBinding.root.showSnackBar("User Not Found")
                 }

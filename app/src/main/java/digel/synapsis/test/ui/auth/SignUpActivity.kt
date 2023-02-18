@@ -10,8 +10,10 @@ import digel.synapsis.test.ui.viewmodel.SignUpViewModel
 import digel.synapsis.test.utils.extension.hideKeyboard
 import digel.synapsis.test.utils.extension.showSnackBar
 import digel.synapsis.test.utils.extension.textChanges
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -45,13 +47,18 @@ class SignUpActivity : AppCompatActivity() {
             }
 
             txtSignup.setOnClickListener {
+                hideKeyboard()
                 finish()
             }
 
             viewModel.signUpEvent.observe(this@SignUpActivity){ result ->
                 if (result){
                     viewBinding.root.showSnackBar("Success, SignUp Account")
-                    finish()
+                    lifecycleScope.launch {
+                        hideKeyboard()
+                        delay(1000)
+                        finish()
+                    }
                 }else {
                     viewBinding.root.showSnackBar("Failed")
                 }

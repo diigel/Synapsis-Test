@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ui.feature.PageAActivity">
+
+        <TextView
+            android:id="@+id/txtTimeNow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Time Now" />
+
+        <TextView
+            android:id="@+id/txtBatteryLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/txtTimeNow"
+            app:layout_constraintStart_toStartOf="@+id/txtTimeNow"
+            app:layout_constraintTop_toBottomOf="@+id/txtTimeNow"
+            tools:text="Battery Level" />
+
+        <TextView
+            android:id="@+id/txtGetLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/txtTimeNow"
+            app:layout_constraintStart_toStartOf="@+id/txtTimeNow"
+            app:layout_constraintTop_toBottomOf="@+id/txtBatteryLevel"
+            tools:text="Location" />
+
+        <TextView
+            android:id="@+id/txtAccelerometer"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/blue_200"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="@string/str_accelerometer"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtGetLocation" />
+
+        <TextView
+            android:id="@+id/txtGyroscope"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/blue_500"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="@string/str_gyroscope"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/txtMagnetometer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtAccelerometer" />
+
+        <TextView
+            android:id="@+id/txtMagnetometer"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="24dp"
+            android:background="@color/blue_700"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="@string/str_magnetometer"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnPageB"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPageB"
+            style="@style/MainButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/str_navigate_to_page_b"
+            app:layout_constraintBottom_toTopOf="@+id/btnPageC"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPageC"
+            style="@style/MainButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/str_navigate_to_page_c"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

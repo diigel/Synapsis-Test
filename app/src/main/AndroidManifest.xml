@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION" />
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".MainApplication"
         android:allowBackup="true"
@@ -14,12 +20,29 @@
         android:theme="@style/Theme.SynapsisTest"
         tools:targetApi="31">
         <activity
-            android:name=".ui.auth.SignUpActivity"
-            android:exported="false">
+            android:name=".ui.feature.PageCActivity"
+            android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity
+            android:name=".ui.feature.PageBActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.auth.SignUpActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.feature.PageAActivity"
+            android:exported="true" />
         <activity
             android:name=".ui.auth.SignInActivity"
             android:exported="true">
@@ -28,13 +51,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.MainActivity"
-            android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
     </application>
 
