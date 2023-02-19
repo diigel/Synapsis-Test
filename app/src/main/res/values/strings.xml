@@ -19,4 +19,10 @@
     <string name="str_gyroscope">Click To Play Gyroscope</string>
     <string name="str_magnetometer">Click To Play Magnetometer</string>
     <string name="str_x_y_z">X %s \nY %s \nZ %s</string>
+
+    <string name="str_manufacture">Manufacture : %s</string>
+    <string name="str_model">Model : %s</string>
+    <string name="str_build">Build : %s</string>
+    <string name="str_sdk">Sdk : %s</string>
+    <string name="str_version_code">VersionCode : %s</string>
 </resources>

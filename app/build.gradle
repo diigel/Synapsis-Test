@@ -3,7 +3,11 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'kotlin-android'
+    id 'com.google.gms.google-services'
 }
+
+Properties prop = new Properties()
+prop.load(project.rootProject.file('key.properties').newDataInputStream())
 
 android {
     namespace 'digel.synapsis.test'
@@ -17,14 +21,24 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        resValue "string", "maps_key", prop.getProperty("maps.key")
+        resValue "string", "maps_url", prop.getProperty("maps.url")
     }
 
     buildTypes {
+        debug{
+            multiDexEnabled true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
         release {
+            multiDexEnabled true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -65,4 +79,14 @@ dependencies {
     implementation 'androidx.room:room-runtime:2.5.0'
     kapt 'androidx.room:room-compiler:2.5.0'
     implementation "androidx.room:room-ktx:2.5.0"
+
+    // maps
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    implementation 'com.google.android.gms:play-services-places:17.0.0'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
 }

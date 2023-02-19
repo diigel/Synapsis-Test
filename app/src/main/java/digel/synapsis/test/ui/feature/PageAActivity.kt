@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import com.google.android.gms.maps.model.LatLng
 import digel.synapsis.test.R
 import digel.synapsis.test.databinding.ActivityPageABinding
 import digel.synapsis.test.utils.extension.showSnackBar
@@ -31,8 +32,9 @@ class PageAActivity : AppCompatActivity(), SensorEventListener {
 
     private lateinit var viewBinding: ActivityPageABinding
     private val calendar by lazy { Calendar.getInstance() }
+    private var latLng: LatLng? = null
 
-    private val sensorManager : SensorManager by lazy {
+    private val sensorManager: SensorManager by lazy {
         getSystemService(SENSOR_SERVICE) as SensorManager
     }
 
@@ -43,7 +45,8 @@ class PageAActivity : AppCompatActivity(), SensorEventListener {
 
         viewBinding.run {
             txtTimeNow.text = calendar.time.toString()
-            txtBatteryLevel.text = String.format(getString(R.string.str_battery_level),initBatteryLevel())
+            txtBatteryLevel.text =
+                String.format(getString(R.string.str_battery_level), initBatteryLevel())
             checkLocationPermission()
 
             btnPageB.setOnClickListener {
@@ -51,7 +54,7 @@ class PageAActivity : AppCompatActivity(), SensorEventListener {
             }
 
             btnPageC.setOnClickListener {
-                startActivity(Intent(this@PageAActivity, PageCActivity::class.java))
+                startActivity(PageCActivity.createIntent(this@PageAActivity, latLng))
             }
             lifecycleScope.launch(Dispatchers.Main) {
                 txtAccelerometer.setOnClickListener {
@@ -83,7 +86,7 @@ class PageAActivity : AppCompatActivity(), SensorEventListener {
 
     }
 
-    private fun registerSensorGyroscope () {
+    private fun registerSensorGyroscope() {
         sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)?.also { gyroscope ->
             sensorManager.registerListener(
                 this,
@@ -94,7 +97,7 @@ class PageAActivity : AppCompatActivity(), SensorEventListener {
         }
     }
 
-    private fun registerSensorMagnetometer () {
+    private fun registerSensorMagnetometer() {
         sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)?.also { magnetometer ->
             sensorManager.registerListener(
                 this,
@@ -125,7 +128,7 @@ class PageAActivity : AppCompatActivity(), SensorEventListener {
                     val color = if (y.toInt() == 0 && x.toInt() == 0) Color.GREEN else Color.RED
                     txtAccelerometer.setBackgroundColor(color)
 
-                    txtAccelerometer.text = String.format(getString(R.string.str_x_y_z),x,y,z)
+                    txtAccelerometer.text = String.format(getString(R.string.str_x_y_z), x, y, z)
                 }
             }
 
@@ -135,7 +138,7 @@ class PageAActivity : AppCompatActivity(), SensorEventListener {
                 val z = event.values[2]
 
                 viewBinding.run {
-                    txtGyroscope.text = String.format(getString(R.string.str_x_y_z),x,y,z)
+                    txtGyroscope.text = String.format(getString(R.string.str_x_y_z), x, y, z)
                 }
             }
 
@@ -145,7 +148,7 @@ class PageAActivity : AppCompatActivity(), SensorEventListener {
                 val z = event.values[2]
 
                 viewBinding.run {
-                    txtMagnetometer.text = String.format(getString(R.string.str_x_y_z),x,y,z)
+                    txtMagnetometer.text = String.format(getString(R.string.str_x_y_z), x, y, z)
                 }
             }
         }
@@ -230,6 +233,11 @@ class PageAActivity : AppCompatActivity(), SensorEventListener {
                     getString(R.string.str_lat_long),
                     location?.latitude,
                     location?.longitude
+                )
+
+                latLng = LatLng(
+                    location?.latitude ?: 0.0,
+                    location?.longitude ?: 0.0
                 )
 
             } catch (e: SecurityException) {

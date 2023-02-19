@@ -6,9 +6,11 @@ import digel.synapsis.test.domain.dao.UserDao
 import digel.synapsis.test.data.local.database.UserDatabase
 import digel.synapsis.test.data.local.repository.AuthRepository
 import digel.synapsis.test.data.local.repository.AuthRepositoryImp
-import digel.synapsis.test.ui.viewmodel.SignInViewModel
+import digel.synapsis.test.data.remote.repository.MapsRepository
+import digel.synapsis.test.data.remote.repository.MapsRepositoryImp
+import digel.synapsis.test.data.network.ApiService
+import digel.synapsis.test.data.network.Network
 import org.koin.android.ext.koin.androidApplication
-import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 object DataModule {
@@ -34,5 +36,13 @@ object DataModule {
 
     val authRepository = module {
         single<AuthRepository>{ AuthRepositoryImp(get()) }
+    }
+
+    val service = module {
+        single { Network.build().create(ApiService::class.java) }
+    }
+
+    val mapRepository = module {
+        single<MapsRepository>{ MapsRepositoryImp(get()) }
     }
 }

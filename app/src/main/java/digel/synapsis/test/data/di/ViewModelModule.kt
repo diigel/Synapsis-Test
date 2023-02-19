@@ -1,5 +1,6 @@
 package digel.synapsis.test.data.di
 
+import digel.synapsis.test.domain.usecase.MapUseCase
 import digel.synapsis.test.domain.usecase.SignInUseCase
 import digel.synapsis.test.domain.usecase.SignUpUseCase
 import digel.synapsis.test.ui.viewmodel.SignInViewModel
@@ -18,11 +19,4 @@ object ViewModelModule {
         viewModel { SignUpViewModel(androidApplication()) }
     }
 
-    val signInUseCase = module {
-        factory { SignInUseCase(get(),Dispatchers.IO) }
-    }
-
-    val signUnUseCase = module {
-        factory { SignUpUseCase(get(),Dispatchers.IO) }
-    }
 }

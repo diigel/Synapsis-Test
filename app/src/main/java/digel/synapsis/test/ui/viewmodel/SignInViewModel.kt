@@ -3,10 +3,8 @@ package digel.synapsis.test.ui.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import digel.synapsis.test.data.local.entity.request.AuthRequest
-import digel.synapsis.test.domain.uimodel.UserUiModel
 import digel.synapsis.test.domain.usecase.SignInUseCase
 import digel.synapsis.test.utils.extension.setOnListener
 import digel.synapsis.test.utils.state.ResultStateListener
